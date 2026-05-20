@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Human Reproduction · Biology Revision</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f1ea;
+    --paper: #fbf9f3;
+    --ink: #1a2e1f;
+    --ink-soft: #5a6b58;
+    --moss: #2d5238;
+    --moss-light: #4a7a52;
+    --leaf: #8db86b;
+    --leaf-pale: #d4e5b8;
+    --gold: #c89832;
+    --gold-pale: #f4e8c8;
+    --rust: #b5482a;
+    --rust-pale: #f4d8cc;
+    --teal: #1a7a7a;
+    --teal-pale: #c8e8e8;
+    --plum: #7a3a7a;
+    --plum-pale: #ead4ea;
+    --line: #d8d2c2;
+    --shadow: 0 1px 2px rgba(26,46,31,0.06), 0 4px 12px rgba(26,46,31,0.04);
+    --radius: 10px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 300;
+    min-height: 100vh;
+    line-height: 1.65;
+    font-size: 16px;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(ellipse at 15% 10%, rgba(141,184,107,0.08), transparent 50%),
+      radial-gradient(ellipse at 85% 90%, rgba(122,58,122,0.04), transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── Header ── */
+  header { text-align: center; margin-bottom: 36px; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+  .crest {
+    display: inline-block;
+    font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--moss); background: var(--leaf-pale);
+    padding: 5px 16px; border-radius: 999px; margin-bottom: 16px;
+    font-family: 'Source Serif 4', sans-serif;
+  }
+  h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(1.9rem, 5vw, 2.9rem);
+    font-weight: 900; line-height: 1.05; letter-spacing: -0.02em;
+  }
+  h1 em { font-style: italic; color: var(--moss); font-weight: 700; }
+  .lede { margin-top: 10px; color: var(--ink-soft); font-size: 0.95rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+  .syllabus-box {
+    margin-top: 16px;
+    display: inline-block;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+  }
+  .syllabus-box strong { color: var(--moss); }
+
+  /* ── Tabs ── */
+  .tabs {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    background: var(--paper); padding: 6px;
+    border: 1px solid var(--line); border-radius: 14px;
+    margin-bottom: 28px; box-shadow: var(--shadow);
+    position: sticky; top: 12px; z-index: 10;
+    backdrop-filter: blur(8px);
+  }
+  .tab {
+    flex: 1; min-width: 100px; padding: 10px 12px;
+    border: none; background: transparent; color: var(--ink-soft);
+    font-family: 'Source Serif 4', serif; font-size: 0.86rem; font-weight: 600;
+    cursor: pointer; border-radius: 8px; transition: all 0.18s; text-align: center;
+  }
+  .tab:hover { color: var(--moss); background: var(--leaf-pale); }
+  .tab.active { background: var(--moss); color: var(--paper); box-shadow: 0 2px 6px rgba(45,82,56,0.25); }
+
+  /* ── Panels ── */
+  .panel { display: none; animation: fadeIn 0.25s ease; }
+  .panel.active { display: block; }
+  @keyframes fadeIn { from { opacity:0; transform: translateY(4px); } to { opacity:1; transform: translateY(0); } }
+
+  /* ── Learn: section headings ── */
+  .learn-section { margin-bottom: 32px; }
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 800;
+    color: var(--moss); margin-bottom: 16px;
+    padding-bottom: 8px; border-bottom: 2px solid var(--leaf-pale);
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .section-heading .badge {
+    font-size: 0.67rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    background: var(--leaf-pale); color: var(--moss);
+    padding: 3px 10px; border-radius: 999px;
+    font-family: 'Source Serif 4', serif;
+  }
+
+  .topic-card {
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 24px 28px;
+    margin-bottom: 14px; box-shadow: var(--shadow);
+  }
+  .topic-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-weight: 800;
+    margin-top: 20px; margin-bottom: 8px; color: var(--ink);
+    border-left: 3px solid var(--leaf); padding-left: 10px;
+  }
+  .topic-card h3:first-child { margin-top: 0; }
+  .topic-card p { margin-bottom: 10px; }
+  .topic-card ul, .topic-card ol { margin: 8px 0 10px 22px; }
+  .topic-card li { margin-bottom: 5px; }
+  .topic-card strong { color: var(--moss); }
+
+  /* Two-column organ table */
+  .organ-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 14px 0;
+  }
+  @media (max-width: 560px) { .organ-grid { grid-template-columns: 1fr; } }
+
+  .organ-col {
+    background: var(--leaf-pale);
+    border-radius: 8px; padding: 14px 16px;
+  }
+  .organ-col h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.88rem; font-weight: 800;
+    color: var(--moss); margin-bottom: 10px;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+
+  .data-table {
+    width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.9rem;
+  }
+  .data-table th {
+    text-align: left; padding: 9px 12px;
+    background: var(--leaf-pale); color: var(--moss);
+    border-bottom: 1px solid var(--line); font-weight: 700;
+    font-family: 'Playfair Display', serif;
+  }
+  .data-table td { padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .data-table tr:last-child td { border-bottom: none; }
+
+  .journey-box {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 4px;
+    background: var(--plum-pale); border-radius: 8px;
+    padding: 12px 16px; margin: 12px 0;
+    font-family: 'Playfair Display', serif; font-size: 0.92rem; color: var(--plum);
+  }
+  .journey-step {
+    background: var(--paper); border: 1px solid var(--plum-pale);
+    border-radius: 5px; padding: 4px 10px; font-weight: 700; color: var(--plum);
+    white-space: nowrap;
+  }
+  .journey-arrow { color: var(--plum); font-weight: 700; padding: 0 2px; }
+
+  .term-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 8px; margin: 12px 0;
+  }
+  .term-chip {
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 8px; padding: 10px 12px;
+  }
+  .term-chip .term { font-family: 'Playfair Display', serif; font-weight: 800; color: var(--moss); font-size: 0.95rem; }
+  .term-chip .def { font-size: 0.8rem; color: var(--ink-soft); margin-top: 3px; line-height: 1.4; }
+
+  .cycle-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px; margin: 12px 0;
+  }
+  @media (max-width: 540px) { .cycle-grid { grid-template-columns: 1fr 1fr; } }
+
+  .cycle-phase {
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 8px; padding: 10px 12px; text-align: center;
+  }
+  .cycle-phase .phase-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800; font-size: 0.9rem; color: var(--moss);
+  }
+  .cycle-phase .phase-days {
+    font-size: 0.75rem; color: var(--ink-soft);
+    margin: 3px 0; font-weight: 600;
+  }
+  .cycle-phase .phase-desc { font-size: 0.78rem; line-height: 1.4; }
+
+  .variation-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0;
+  }
+  @media (max-width: 500px) { .variation-grid { grid-template-columns: 1fr; } }
+  .var-col {
+    background: var(--leaf-pale); border-radius: 8px; padding: 14px 16px;
+  }
+  .var-col h4 { font-family: 'Playfair Display', serif; font-size: 0.88rem; font-weight: 800; color: var(--moss); margin-bottom: 8px; }
+  .var-col ul { margin-left: 16px; }
+  .var-col li { margin-bottom: 4px; font-size: 0.9rem; }
+
+  .practical-box {
+    background: var(--gold-pale); border-left: 3px solid var(--gold);
+    padding: 12px 18px; border-radius: 0 8px 8px 0; margin: 14px 0; font-size: 0.9rem;
+  }
+  .practical-box strong { color: var(--gold); }
+
+  /* ── Keywords ── */
+  .keyword-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+  }
+  .kw-card {
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 14px 18px; box-shadow: var(--shadow);
+  }
+  .kw-term { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--moss); margin-bottom: 4px; }
+  .kw-def { font-size: 0.88rem; line-height: 1.5; }
+  .kw-topic { display: inline-block; margin-top: 6px; font-size: 0.68rem; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+
+  /* ── Flashcards ── */
+  .flash-area { max-width: 580px; margin: 0 auto; }
+  .flash-card {
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 36px; min-height: 220px; box-shadow: var(--shadow);
+    display: flex; flex-direction: column; justify-content: center;
+    cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; position: relative;
+  }
+  .flash-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(26,46,31,0.08); }
+  .flash-side-label { position: absolute; top: 14px; right: 16px; font-size: 0.7rem; color: var(--ink-soft); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+  .flash-q { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; line-height: 1.4; text-align: center; }
+  .flash-a { font-size: 0.95rem; line-height: 1.65; }
+  .flash-hint { text-align: center; color: var(--ink-soft); font-size: 0.8rem; margin-top: 14px; font-style: italic; }
+  .flash-controls { display: flex; gap: 10px; justify-content: center; margin-top: 18px; align-items: center; }
+  .counter { color: var(--ink-soft); font-size: 0.85rem; font-weight: 600; min-width: 60px; text-align: center; }
+
+  /* ── Buttons ── */
+  .btn {
+    padding: 10px 22px; border-radius: 8px;
+    border: 1px solid var(--line); background: var(--paper);
+    color: var(--ink); cursor: pointer;
+    font-family: 'Source Serif 4', serif; font-weight: 600; font-size: 0.88rem;
+    transition: all 0.18s;
+  }
+  .btn:hover { border-color: var(--moss); color: var(--moss); }
+  .btn.primary { background: var(--moss); color: var(--paper); border-color: var(--moss); }
+  .btn.primary:hover { background: var(--moss-light); }
+
+  /* ── Gap fill ── */
+  .gap-card {
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 20px 24px;
+    margin-bottom: 12px; box-shadow: var(--shadow);
+  }
+  .gap-q { font-size: 0.97rem; line-height: 1.9; margin-bottom: 6px; }
+  .gap-input {
+    display: inline-block; border: none;
+    border-bottom: 2px solid var(--moss);
+    background: transparent;
+    font-family: 'Source Serif 4', serif; font-size: 0.97rem;
+    color: var(--moss); font-weight: 600;
+    padding: 2px 6px; width: 170px; outline: none; transition: all 0.18s;
+  }
+  .gap-input:focus { border-color: var(--leaf); background: var(--leaf-pale); }
+  .gap-input.right { border-color: var(--teal); background: var(--teal-pale); color: var(--teal); }
+  .gap-input.wrong { border-color: var(--rust); background: var(--rust-pale); color: var(--rust); }
+  .gap-feedback { font-size: 0.83rem; margin-top: 6px; min-height: 16px; }
+
+  /* ── MCQ ── */
+  .mcq-card {
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 22px 26px;
+    margin-bottom: 14px; box-shadow: var(--shadow);
+  }
+  .mcq-q { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 14px; line-height: 1.4; }
+  .mcq-num { color: var(--moss); font-weight: 700; margin-right: 5px; }
+  .mcq-options { display: grid; gap: 8px; }
+  .mcq-opt {
+    padding: 10px 14px; border: 1px solid var(--line); border-radius: 8px;
+    background: var(--paper); cursor: pointer;
+    font-family: 'Source Serif 4', serif; font-size: 0.9rem;
+    text-align: left; transition: all 0.18s;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .mcq-opt:hover:not(:disabled) { border-color: var(--moss); background: var(--leaf-pale); }
+  .mcq-opt-letter {
+    width: 22px; height: 22px; border-radius: 5px;
+    background: var(--leaf-pale); color: var(--moss);
+    font-size: 0.75rem; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .mcq-opt.correct { border-color: var(--teal); background: var(--teal-pale); }
+  .mcq-opt.correct .mcq-opt-letter { background: var(--teal); color: var(--paper); }
+  .mcq-opt.wrong { border-color: var(--rust); background: var(--rust-pale); }
+  .mcq-opt.wrong .mcq-opt-letter { background: var(--rust); color: var(--paper); }
+  .mcq-feedback { margin-top: 12px; padding: 10px 14px; border-radius: 8px; font-size: 0.86rem; line-height: 1.5; display: none; }
+  .mcq-feedback.show { display: block; }
+  .mcq-feedback.correct { background: var(--teal-pale); color: var(--teal); }
+  .mcq-feedback.wrong { background: var(--rust-pale); color: var(--rust); }
+
+  /* ── Progress ── */
+  .progress {
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 12px 18px;
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 18px; box-shadow: var(--shadow);
+  }
+  .progress-bar { flex:1; height:6px; background:var(--leaf-pale); border-radius:999px; overflow:hidden; }
+  .progress-fill { height:100%; background:linear-gradient(90deg,var(--leaf),var(--moss)); width:0%; transition:width 0.3s; }
+  .progress-text { font-size:0.85rem; color:var(--ink-soft); font-weight:600; white-space:nowrap; }
+
+  /* ── Panel intro ── */
+  .panel-intro {
+    color: var(--ink-soft); font-size: 0.9rem; margin-bottom: 18px;
+    padding: 12px 16px; background: var(--paper);
+    border: 1px dashed var(--line); border-radius: 8px;
+  }
+
+  /* ── Exam ── */
+  .exam-total-banner {
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 18px 22px;
+    margin-bottom: 20px; box-shadow: var(--shadow);
+    display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+  }
+  .banner-score { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900; color: var(--moss); line-height:1; }
+  .banner-label { color: var(--ink-soft); font-size: 0.82rem; font-weight: 600; margin-top: 2px; }
+  .banner-bar { flex:1; min-width:100px; height:9px; background:var(--leaf-pale); border-radius:999px; overflow:hidden; }
+  .banner-fill { height:100%; background:linear-gradient(90deg,var(--leaf),var(--moss)); width:0%; transition:width 0.5s cubic-bezier(.4,0,.2,1); }
+  .banner-msg { font-size: 0.85rem; color: var(--ink-soft); font-style: italic; }
+
+  .exam-card {
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 26px 30px;
+    margin-bottom: 18px; box-shadow: var(--shadow);
+  }
+  .exam-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; gap: 16px; flex-wrap: wrap; }
+  .exam-num { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--moss); }
+  .exam-marks { background: var(--gold-pale); color: var(--gold); padding: 3px 10px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
+  .exam-context { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--line); font-size: 1rem; line-height: 1.6; }
+
+  .part-block { margin-bottom: 22px; padding-bottom: 22px; border-bottom: 1px dashed var(--line); }
+  .part-block:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .part-stem { display: flex; gap: 8px; align-items: baseline; margin-bottom: 10px; }
+  .part-label { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 800; color: var(--moss); flex-shrink: 0; min-width: 22px; }
+  .part-q { font-size: 1rem; line-height: 1.5; flex: 1; }
+  .part-marks { font-size: 0.85rem; color: var(--ink-soft); font-style: italic; }
+  .part-controls { margin: 10px 0 0; }
+  .reveal-btn {
+    padding: 8px 18px; background: transparent;
+    border: 1px solid var(--moss); color: var(--moss);
+    border-radius: 8px; cursor: pointer;
+    font-family: 'Source Serif 4', serif; font-weight: 600; font-size: 0.85rem;
+    transition: all 0.18s;
+  }
+  .reveal-btn:hover { background: var(--moss); color: var(--paper); }
+  .part-ms { display: none; margin-top: 12px; border-radius: 8px; overflow: hidden; }
+  .part-ms.show { display: block; animation: fadeIn 0.2s ease; }
+  .ms-content { background: var(--leaf-pale); border-left: 3px solid var(--moss); padding: 12px 16px; font-size: 0.9rem; line-height: 1.6; }
+  .ms-content strong { color: var(--moss); }
+  .ms-content .mark { color: var(--gold); font-weight: 700; }
+  .answer-area { margin: 14px 0 0; }
+  .answer-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 5px; font-family: 'Source Serif 4', serif; }
+  .answer-textarea {
+    width: 100%; min-height: 100px; padding: 10px 14px;
+    background: var(--bg); border: 1px solid var(--line); border-radius: 8px;
+    font-family: 'Source Serif 4', serif; font-size: 0.95rem; color: var(--ink);
+    resize: vertical; outline: none; transition: border-color 0.18s; line-height: 1.6;
+  }
+  .answer-textarea:focus { border-color: var(--moss); background: var(--paper); }
+  .answer-textarea::placeholder { color: var(--ink-soft); opacity: 0.6; }
+
+  .self-mark { display: none; padding: 14px 18px; background: var(--gold-pale); border: 1px solid rgba(200,152,50,0.3); border-radius: 0 0 8px 8px; }
+  .self-mark.show { display: block; animation: fadeIn 0.25s ease; }
+  .self-mark-title { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; font-family: 'Source Serif 4', serif; }
+  .mark-rows { display: flex; flex-direction: column; gap: 7px; }
+  .mark-row { display: flex; align-items: flex-start; gap: 10px; font-size: 0.88rem; }
+  .mark-check {
+    width: 24px; height: 24px; border: 2px solid var(--line); border-radius: 5px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px; background: var(--paper);
+    transition: all 0.18s; font-size: 0.85rem; color: transparent; user-select: none;
+  }
+  .mark-check.checked { background: var(--moss); border-color: var(--moss); color: white; }
+  .mark-label { flex: 1; color: var(--ink); line-height: 1.5; }
+  .mark-pts { font-weight: 700; color: var(--gold); white-space: nowrap; font-size: 0.78rem; padding-top: 2px; }
+  .score-tally { display: flex; align-items: center; gap: 10px; margin-top: 10px; padding: 8px 12px; background: var(--paper); border-radius: 8px; border: 1px solid var(--line); font-size: 0.85rem; font-weight: 600; }
+  .tally-label { color: var(--ink-soft); }
+  .tally-score { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--moss); min-width: 50px; }
+  .tally-bar { flex:1; height:6px; background:var(--leaf-pale); border-radius:999px; overflow:hidden; }
+  .tally-fill { height:100%; background:linear-gradient(90deg,var(--leaf),var(--moss)); width:0%; transition:width 0.4s cubic-bezier(.4,0,.2,1); }
+  .question-total { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: var(--leaf-pale); border-radius: 8px; margin-top: 18px; font-size: 0.86rem; font-weight: 600; }
+  .qtotal-label { color: var(--ink-soft); }
+  .qtotal-score { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--moss); min-width: 48px; }
+
+  @media (max-width: 600px) {
+    .exam-card, .topic-card { padding: 18px; }
+    .tab { min-width: 80px; font-size: 0.8rem; padding: 8px 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="crest">ISEB · Common Entrance · 13+ Biology</div>
+  <h1>Human <em>Reproduction</em></h1>
+  <p class="lede">Focused revision covering variation, reproductive systems, fertilisation, foetal development, puberty and the menstrual cycle.</p>
+  <div class="syllabus-box"><strong>Syllabus references:</strong> ISEB 13+ Biology pp. 25–27 · Variation &amp; Reproduction topic sheet</div>
+</header>
+
+<nav class="tabs" role="tablist">
+  <button class="tab active" data-panel="learn">📖 Learn</button>
+  <button class="tab" data-panel="keywords">🔑 Keywords</button>
+  <button class="tab" data-panel="flash">🃏 Flashcards</button>
+  <button class="tab" data-panel="gap">✏️ Gap Fill</button>
+  <button class="tab" data-panel="mcq">📝 MCQs</button>
+  <button class="tab" data-panel="exam">🎓 Exam Qs</button>
+</nav>
+
+<!-- ════════════════════════════ LEARN ════════════════════════════ -->
+<section class="panel active" id="panel-learn">
+
+  <!-- VARIATION -->
+  <div class="learn-section">
+    <div class="section-heading">Variation <span class="badge">Spec: Know &amp; Give Examples</span></div>
+
+    <div class="topic-card">
+      <h3>Continuous and discontinuous variation</h3>
+      <p>Individuals of the same species are not identical — they show <strong>variation</strong>. There are two types:</p>
+      <div class="variation-grid">
+        <div class="var-col">
+          <h4>Continuous variation</h4>
+          <p style="font-size:0.88rem; margin-bottom:6px;">Varies across a <em>range</em> with no distinct categories. Can take any value. Shown on a line graph or histogram.</p>
+          <ul>
+            <li>Height</li>
+            <li>Mass / weight</li>
+            <li>Hand span</li>
+            <li>Foot length</li>
+            <li>Skin colour</li>
+          </ul>
+        </div>
+        <div class="var-col">
+          <h4>Discontinuous variation</h4>
+          <p style="font-size:0.88rem; margin-bottom:6px;">Falls into <em>distinct groups</em> with no intermediate values. Shown on a bar chart.</p>
+          <ul>
+            <li>Blood group (A, B, AB, O)</li>
+            <li>Sex (male/female)</li>
+            <li>Tongue rolling</li>
+            <li>Attached/free earlobes</li>
+            <li>Eye colour</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Inherited and environmental characteristics</h3>
+      <p>Variation can be caused by <strong>genes</strong> (inherited from parents), <strong>environment</strong>, or — most commonly — a combination of both:</p>
+      <table class="data-table">
+        <thead><tr><th>Inherited (genetic)</th><th>Environmental</th><th>Both</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Blood group, sex, tongue rolling, eye colour, attached earlobes</td>
+            <td>Language spoken, religion, tattoos, scars</td>
+            <td>Height, skin colour, body mass, intelligence</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- REPRODUCTIVE SYSTEMS -->
+  <div class="learn-section">
+    <div class="section-heading">Reproductive Systems <span class="badge">Spec: Structures &amp; Functions</span></div>
+
+    <div class="topic-card">
+      <div class="organ-grid">
+        <div class="organ-col">
+          <h4>♂ Male reproductive system</h4>
+          <table class="data-table" style="background:transparent;">
+            <thead><tr><th style="background:rgba(255,255,255,0.6);">Structure</th><th style="background:rgba(255,255,255,0.6);">Function</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Testes</strong></td><td>Produce sperm and testosterone</td></tr>
+              <tr><td><strong>Sperm duct (vas deferens)</strong></td><td>Carries sperm from testes to urethra</td></tr>
+              <tr><td><strong>Seminal vesicles / prostate gland</strong></td><td>Add fluid to form semen; nourish and activate sperm</td></tr>
+              <tr><td><strong>Urethra</strong></td><td>Carries semen (and urine) out of the body</td></tr>
+              <tr><td><strong>Penis</strong></td><td>Deposits semen into the vagina during intercourse</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="organ-col">
+          <h4>♀ Female reproductive system</h4>
+          <table class="data-table" style="background:transparent;">
+            <thead><tr><th style="background:rgba(255,255,255,0.6);">Structure</th><th style="background:rgba(255,255,255,0.6);">Function</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Ovaries</strong></td><td>Produce eggs (ova) and sex hormones (oestrogen, progesterone)</td></tr>
+              <tr><td><strong>Oviduct (Fallopian tube)</strong></td><td>Carries egg from ovary to uterus; site of fertilisation</td></tr>
+              <tr><td><strong>Uterus (womb)</strong></td><td>Where the fertilised egg implants and the foetus develops</td></tr>
+              <tr><td><strong>Cervix</strong></td><td>Lower neck of the uterus; dilates during birth</td></tr>
+              <tr><td><strong>Vagina</strong></td><td>Receives penis during intercourse; birth canal</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FERTILISATION & IMPLANTATION -->
+  <div class="learn-section">
+    <div class="section-heading">Fertilisation &amp; Implantation <span class="badge">Spec: Know the Journey</span></div>
+
+    <div class="topic-card">
+      <h3>Key terms</h3>
+      <div class="term-grid">
+        <div class="term-chip">
+          <div class="term">Gamete</div>
+          <div class="def">A sex cell — sperm (male) or egg/ovum (female). Contains half the normal number of chromosomes.</div>
+        </div>
+        <div class="term-chip">
+          <div class="term">Fertilisation</div>
+          <div class="def">The fusion of a male gamete (sperm) with a female gamete (egg) to form a zygote.</div>
+        </div>
+        <div class="term-chip">
+          <div class="term">Zygote</div>
+          <div class="def">The single cell formed immediately after fertilisation. Contains a full set of chromosomes.</div>
+        </div>
+        <div class="term-chip">
+          <div class="term">Embryo</div>
+          <div class="def">The developing organism from the first cell divisions after fertilisation up to about 8 weeks.</div>
+        </div>
+        <div class="term-chip">
+          <div class="term">Foetus</div>
+          <div class="def">The developing organism from about 8 weeks after fertilisation until birth, when all major organs are formed.</div>
+        </div>
+        <div class="term-chip">
+          <div class="term">Implantation</div>
+          <div class="def">When the embryo embeds itself in the lining of the uterus wall, about 6–12 days after fertilisation.</div>
+        </div>
+      </div>
+
+      <h3>The journey from fertilisation to implantation</h3>
+      <div class="journey-box">
+        <div class="journey-step">Egg released from ovary</div>
+        <div class="journey-arrow">→</div>
+        <div class="journey-step">Sperm fertilises egg in oviduct</div>
+        <div class="journey-arrow">→</div>
+        <div class="journey-step">Zygote formed</div>
+        <div class="journey-arrow">→</div>
+        <div class="journey-step">Cell division begins (embryo)</div>
+        <div class="journey-arrow">→</div>
+        <div class="journey-step">Embryo travels to uterus</div>
+        <div class="journey-arrow">→</div>
+        <div class="journey-step">Implants in uterus wall</div>
+      </div>
+      <p>Fertilisation takes place in the <strong>oviduct (Fallopian tube)</strong>. The fertilised egg divides repeatedly as it moves towards the uterus, becoming an embryo. It implants in the thick, spongy lining of the uterus — a process called <strong>implantation</strong>.</p>
+    </div>
+  </div>
+
+  <!-- DEVELOPMENT IN THE UTERUS -->
+  <div class="learn-section">
+    <div class="section-heading">Development in the Uterus <span class="badge">Spec: Placenta, Umbilical Cord, Amniotic Sac</span></div>
+
+    <div class="topic-card">
+      <h3>Structures supporting foetal development</h3>
+      <table class="data-table">
+        <thead><tr><th>Structure</th><th>Function</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Placenta</strong></td>
+            <td>
+              A disc-shaped organ attached to the uterus wall. The foetal and maternal blood supplies run close together (but do NOT mix).
+              <ul style="margin-top:6px;">
+                <li>Oxygen and nutrients (glucose, amino acids) pass from mother → foetus</li>
+                <li>Carbon dioxide and urea (waste) pass from foetus → mother</li>
+                <li>Acts as a barrier against most pathogens (but not all)</li>
+                <li>Produces hormones to maintain the pregnancy</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Umbilical cord</strong></td>
+            <td>Connects the foetus to the placenta. Contains blood vessels carrying oxygenated blood and nutrients to the foetus, and deoxygenated blood and waste back to the placenta.</td>
+          </tr>
+          <tr>
+            <td><strong>Amniotic sac</strong></td>
+            <td>A tough, fluid-filled membrane surrounding the foetus.</td>
+          </tr>
+          <tr>
+            <td><strong>Amniotic fluid</strong></td>
+            <td>The fluid inside the amniotic sac. It cushions and protects the foetus from physical shocks, maintains a constant temperature, and allows free movement.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Lifestyle and foetal development</h3>
+      <p>The mother's lifestyle directly affects the foetus because some substances can cross the placenta:</p>
+      <ul>
+        <li><strong>Smoking</strong> — carbon monoxide and nicotine cross the placenta. CO binds to haemoglobin in the foetal blood, reducing oxygen delivery. This leads to low birth weight and increases risk of premature birth.</li>
+        <li><strong>Alcohol</strong> — crosses the placenta freely. Can cause foetal alcohol syndrome — affecting brain development, causing learning difficulties and physical abnormalities.</li>
+        <li><strong>Drugs</strong> — many prescribed and recreational drugs cross the placenta and can disrupt normal development.</li>
+        <li><strong>Balanced diet</strong> — adequate folic acid, iron, calcium and protein are essential for healthy foetal growth.</li>
+        <li><strong>Infections</strong> — some viruses (e.g. rubella/German measles) can cross the placenta and damage the foetus.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PUBERTY -->
+  <div class="learn-section">
+    <div class="section-heading">Puberty <span class="badge">Spec: Changes During Puberty</span></div>
+
+    <div class="topic-card">
+      <h3>What is puberty?</h3>
+      <p>Puberty is the period during which the body develops from a child's into an adult's, becoming capable of sexual reproduction. It is triggered by sex hormones — <strong>testosterone</strong> in males, <strong>oestrogen</strong> in females.</p>
+
+      <div class="organ-grid">
+        <div class="organ-col">
+          <h4>Changes in both sexes</h4>
+          <ul>
+            <li>Growth spurt</li>
+            <li>Pubic and underarm hair grows</li>
+            <li>Skin becomes oilier (can cause acne)</li>
+            <li>Body odour increases (sweat glands more active)</li>
+            <li>Emotional and psychological changes</li>
+          </ul>
+        </div>
+        <div class="organ-col">
+          <h4>Male-specific changes</h4>
+          <ul>
+            <li>Testes and penis enlarge</li>
+            <li>Sperm production begins</li>
+            <li>Voice deepens ("voice breaks")</li>
+            <li>Facial and body hair grows</li>
+            <li>Muscles develop (broader shoulders)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="organ-col" style="margin-top:10px; border-radius:8px;">
+        <h4 style="font-family:'Playfair Display',serif; font-size:0.88rem; font-weight:800; color:var(--moss); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.06em;">Female-specific changes</h4>
+        <ul style="margin-left:16px;">
+          <li>Ovaries begin releasing eggs (ovulation begins)</li>
+          <li>Menstrual cycle begins (menarche)</li>
+          <li>Breasts develop</li>
+          <li>Hips widen (pelvis broadens)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- MENSTRUAL CYCLE -->
+  <div class="learn-section">
+    <div class="section-heading">The Menstrual Cycle <span class="badge">Spec: Key Features from Diagrams</span></div>
+
+    <div class="topic-card">
+      <h3>Overview</h3>
+      <p>The menstrual cycle is a roughly <strong>28-day</strong> repeating cycle that prepares the female body for pregnancy. It involves changes to the uterus lining and the release of an egg.</p>
+
+      <div class="cycle-grid">
+        <div class="cycle-phase">
+          <div class="phase-name">Menstruation</div>
+          <div class="phase-days">Days 1–5</div>
+          <div class="phase-desc">The uterus lining breaks down and is shed along with blood through the vagina.</div>
+        </div>
+        <div class="cycle-phase">
+          <div class="phase-name">Proliferation</div>
+          <div class="phase-days">Days 6–13</div>
+          <div class="phase-desc">The uterus lining rebuilds and thickens. Oestrogen is rising.</div>
+        </div>
+        <div class="cycle-phase">
+          <div class="phase-name">Ovulation</div>
+          <div class="phase-days">~Day 14</div>
+          <div class="phase-desc">An egg is released from an ovary. The most fertile point of the cycle.</div>
+        </div>
+        <div class="cycle-phase">
+          <div class="phase-name">Secretory / Maintenance</div>
+          <div class="phase-days">Days 15–28</div>
+          <div class="phase-desc">The lining is maintained by progesterone. If no fertilisation occurs, hormone levels fall and menstruation begins again.</div>
+        </div>
+      </div>
+
+      <h3>Key features to identify from diagrams</h3>
+      <ul>
+        <li><strong>Day 1</strong> — start of menstruation (lining shed).</li>
+        <li><strong>~Day 14</strong> — ovulation (egg release); peak oestrogen level on diagram.</li>
+        <li><strong>Days 1–28</strong> — the uterus lining thickness changes: thin during menstruation, thickest just before day 28.</li>
+        <li><strong>Oestrogen</strong> — peaks around day 12–13, triggers ovulation.</li>
+        <li><strong>Progesterone</strong> — rises after ovulation (days 15–26) to maintain the uterus lining; falls sharply at day 28 triggering menstruation.</li>
+        <li>If fertilisation occurs, progesterone remains high and menstruation does not happen — the cycle stops.</li>
+      </ul>
+
+      <div class="practical-box">
+        <strong>Exam skills:</strong> You may be given a diagram showing hormone levels and/or uterus lining thickness over 28 days and asked to: identify when ovulation occurs; state which hormone is rising or falling at a given point; explain what happens if fertilisation does or does not take place; predict what would happen to the cycle if pregnancy occurs.
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ════════════════════════════ KEYWORDS ════════════════════════════ -->
+<section class="panel" id="panel-keywords">
+  <div class="panel-intro">All key terms for Human Reproduction. Learn every definition carefully — they frequently appear in 1-mark questions.</div>
+  <div class="keyword-grid" id="keywordGrid"></div>
+</section>
+
+<!-- ════════════════════════════ FLASHCARDS ════════════════════════════ -->
+<section class="panel" id="panel-flash">
+  <div class="panel-intro">Click a card to flip it. Work through the full deck before your exam.</div>
+  <div class="flash-area">
+    <div class="flash-card" id="flashCard" onclick="flipFlash()">
+      <span class="flash-side-label" id="flashSideLabel">Question</span>
+      <div id="flashContent" class="flash-q">Loading…</div>
+    </div>
+    <p class="flash-hint">Click the card to reveal the answer</p>
+    <div class="flash-controls">
+      <button class="btn" onclick="prevFlash()">← Previous</button>
+      <span class="counter" id="flashCounter">1 / 1</span>
+      <button class="btn primary" onclick="nextFlash()">Next →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ GAP FILL ════════════════════════════ -->
+<section class="panel" id="panel-gap">
+  <div class="panel-intro">Complete each sentence. Press Enter or click "Check All" to mark your answers.</div>
+  <div id="gapList"></div>
+  <div style="text-align:center; margin-top:20px;">
+    <button class="btn primary" onclick="checkAllGaps()">Check All</button>
+    <button class="btn" onclick="resetGaps()" style="margin-left:8px;">Reset</button>
+  </div>
+</section>
+
+<!-- ════════════════════════════ MCQ ════════════════════════════ -->
+<section class="panel" id="panel-mcq">
+  <div class="progress">
+    <div class="progress-text">Score: <span id="mcqScore">0</span> / <span id="mcqTotal">0</span></div>
+    <div class="progress-bar"><div class="progress-fill" id="mcqProgress"></div></div>
+  </div>
+  <div id="mcqList"></div>
+</section>
+
+<!-- ════════════════════════════ EXAM Qs ════════════════════════════ -->
+<section class="panel" id="panel-exam">
+  <div class="panel-intro">Write your answer for each part, then reveal the mark scheme and tick what you got right.</div>
+  <div class="exam-total-banner">
+    <div>
+      <div class="banner-score"><span id="bannerGot">0</span> / <span id="bannerMax">0</span></div>
+      <div class="banner-label">Marks awarded so far</div>
+    </div>
+    <div class="banner-bar"><div class="banner-fill" id="bannerFill"></div></div>
+    <div class="banner-msg" id="bannerMsg">Tick the mark points you achieved after reading each mark scheme.</div>
+  </div>
+  <div id="examList"></div>
+</section>
+
+</div>
+<script>
+// ══════════════════════ DATA ══════════════════════
+
+const KEYWORDS = [
+  // Variation
+  { term:'Variation', def:'Differences between individuals of the same species.', topic:'Variation' },
+  { term:'Continuous variation', def:'Variation that falls across a range with no distinct categories (e.g. height, mass). Shown as a histogram or line graph.', topic:'Variation' },
+  { term:'Discontinuous variation', def:'Variation that falls into distinct groups with no intermediate values (e.g. blood group, sex). Shown as a bar chart.', topic:'Variation' },
+  { term:'Inherited characteristic', def:'A feature determined by genes passed from parents to offspring (e.g. blood group, eye colour, tongue rolling).', topic:'Variation' },
+  { term:'Environmental characteristic', def:'A feature determined by the surroundings or experiences of the organism rather than by its genes (e.g. language, scars).', topic:'Variation' },
+  // Reproductive systems
+  { term:'Testes (singular: testis)', def:'Male organs that produce sperm and the hormone testosterone.', topic:'Reproductive systems' },
+  { term:'Ovaries', def:'Female organs that produce eggs (ova) and the hormones oestrogen and progesterone.', topic:'Reproductive systems' },
+  { term:'Oviduct (Fallopian tube)', def:'The tube that carries an egg from the ovary to the uterus. This is where fertilisation takes place.', topic:'Reproductive systems' },
+  { term:'Uterus (womb)', def:'The muscular organ in which the fertilised egg implants and the foetus develops during pregnancy.', topic:'Reproductive systems' },
+  { term:'Cervix', def:'The lower narrow portion of the uterus that opens into the vagina. Dilates during birth.', topic:'Reproductive systems' },
+  // Fertilisation
+  { term:'Gamete', def:'A sex cell. The male gamete is the sperm; the female gamete is the egg (ovum). Each contains half the normal number of chromosomes.', topic:'Fertilisation' },
+  { term:'Fertilisation', def:'The fusion of a male gamete (sperm) with a female gamete (egg) to produce a zygote.', topic:'Fertilisation' },
+  { term:'Zygote', def:'The single cell produced immediately after fertilisation of an egg by a sperm. It contains the full number of chromosomes.', topic:'Fertilisation' },
+  { term:'Embryo', def:'The developing organism in the early weeks after fertilisation, before all organs are fully formed (up to approximately 8 weeks).', topic:'Fertilisation' },
+  { term:'Foetus', def:'The developing organism from approximately 8 weeks after fertilisation until birth, when all major organs are present.', topic:'Fertilisation' },
+  { term:'Implantation', def:'The process by which the embryo embeds itself in the lining of the uterus wall, approximately 6–12 days after fertilisation.', topic:'Fertilisation' },
+  // Development
+  { term:'Placenta', def:'A disc-shaped organ attaching the foetus to the uterus wall. It allows exchange of oxygen, nutrients and waste between maternal and foetal blood (without the blood mixing).', topic:'Development' },
+  { term:'Umbilical cord', def:'The cord connecting the foetus to the placenta, containing blood vessels that transport oxygen/nutrients to the foetus and carbon dioxide/waste back.', topic:'Development' },
+  { term:'Amniotic sac', def:'A fluid-filled membrane surrounding the foetus, protecting it from physical shocks and maintaining a stable temperature.', topic:'Development' },
+  { term:'Amniotic fluid', def:'The fluid inside the amniotic sac that cushions and protects the foetus.', topic:'Development' },
+  // Puberty
+  { term:'Puberty', def:'The period of physical development during which a child\'s body matures into an adult body capable of sexual reproduction, triggered by sex hormones.', topic:'Puberty' },
+  { term:'Testosterone', def:'The main male sex hormone, produced by the testes. Triggers male puberty changes including sperm production, muscle development and voice breaking.', topic:'Puberty' },
+  { term:'Oestrogen', def:'A female sex hormone, produced by the ovaries. Triggers female puberty changes and controls the menstrual cycle.', topic:'Puberty' },
+  // Menstrual cycle
+  { term:'Menstrual cycle', def:'A roughly 28-day cycle in females that involves the release of an egg (ovulation) and preparation of the uterus for possible implantation.', topic:'Menstrual cycle' },
+  { term:'Menstruation', def:'The shedding of the uterus lining and blood through the vagina if fertilisation has not occurred (days 1–5 of the cycle).', topic:'Menstrual cycle' },
+  { term:'Ovulation', def:'The release of an egg from an ovary, occurring at approximately day 14 of the menstrual cycle.', topic:'Menstrual cycle' },
+  { term:'Progesterone', def:'A female sex hormone that maintains the uterus lining after ovulation. Falls sharply at day 28 if no fertilisation, triggering menstruation.', topic:'Menstrual cycle' },
+];
+
+const FLASH = [
+  // Variation
+  { q:'What is the difference between continuous and discontinuous variation? Give one example of each.', a:'Continuous: varies across a range with no distinct groups — e.g. height, mass. Discontinuous: falls into distinct categories with no intermediates — e.g. blood group, sex.' },
+  { q:'State whether each is inherited, environmental or both: blood group; language spoken; height.', a:'Blood group — inherited. Language — environmental. Height — both (genes set the potential; diet/environment influence it).' },
+  { q:'Which type of graph is used for continuous variation? Which for discontinuous?', a:'Continuous → histogram or line graph (no gaps between bars). Discontinuous → bar chart (gaps between bars show distinct categories).' },
+  // Reproductive systems
+  { q:'Where are sperm produced?', a:'In the testes.' },
+  { q:'Where does fertilisation take place?', a:'In the oviduct (Fallopian tube).' },
+  { q:'Name the function of the uterus.', a:'It is where the fertilised egg implants and the foetus develops during pregnancy.' },
+  { q:'What is the function of the seminal vesicles/prostate gland?', a:'They add fluid to sperm to form semen, providing nutrients and activating the sperm.' },
+  { q:'What is the function of the cervix?', a:'It is the lower neck of the uterus; it dilates to allow the baby to pass through during birth.' },
+  // Fertilisation
+  { q:'What is a gamete?', a:'A sex cell — either a sperm (male) or an egg/ovum (female). Each contains half the normal number of chromosomes.' },
+  { q:'What is a zygote?', a:'The single cell formed immediately after a sperm fertilises an egg. It contains the full set of chromosomes.' },
+  { q:'What is the difference between an embryo and a foetus?', a:'An embryo is the early stage of development (first ~8 weeks after fertilisation). A foetus is the developing organism from ~8 weeks until birth, when all major organs are present.' },
+  { q:'Where in the body does fertilisation take place?', a:'In the oviduct (Fallopian tube) — after the egg is released from the ovary.' },
+  { q:'What is implantation?', a:'When the embryo embeds itself into the lining of the uterus wall, approximately 6–12 days after fertilisation.' },
+  { q:'Put in order: zygote, foetus, fertilisation, embryo, implantation.', a:'Fertilisation → zygote forms → cell division → embryo → implantation in uterus → foetus (from ~8 weeks).' },
+  // Development
+  { q:'State TWO substances that pass from the mother to the foetus across the placenta.', a:'Any two: oxygen, glucose, amino acids, vitamins, minerals, water.' },
+  { q:'State TWO substances that pass from the foetus to the mother across the placenta.', a:'Carbon dioxide and urea (metabolic waste products).' },
+  { q:'Do the maternal and foetal blood supplies mix in the placenta?', a:'No — they run very close together but do NOT mix. Exchange occurs by diffusion across a thin membrane.' },
+  { q:'What is the function of the amniotic fluid?', a:'It cushions and protects the foetus from physical shocks, maintains a constant temperature and allows the foetus to move freely.' },
+  { q:'Why is smoking harmful to a developing foetus?', a:'Carbon monoxide crosses the placenta and binds to foetal haemoglobin, reducing oxygen delivery. Nicotine constricts blood vessels. This causes low birth weight and increases risk of premature birth and miscarriage.' },
+  { q:'Why can alcohol harm a foetus?', a:'Alcohol crosses the placenta freely and can damage the foetus\'s brain and organs, potentially causing foetal alcohol syndrome — learning difficulties and physical abnormalities.' },
+  // Puberty
+  { q:'Name THREE changes that occur in BOTH sexes during puberty.', a:'Any three: growth spurt, pubic and underarm hair, skin becomes oilier (acne), body odour increases, emotional changes.' },
+  { q:'Name TWO changes specific to males during puberty.', a:'Any two: testes and penis enlarge, sperm production begins, voice breaks/deepens, facial and body hair grows, muscles develop.' },
+  { q:'Name TWO changes specific to females during puberty.', a:'Any two: menstrual cycle begins, ovulation begins, breasts develop, hips widen.' },
+  { q:'Which hormone triggers male puberty? Which triggers female puberty?', a:'Testosterone triggers male puberty; oestrogen triggers female puberty. Both are produced by the gonads (testes / ovaries).' },
+  // Menstrual cycle
+  { q:'How long does the menstrual cycle typically last?', a:'Approximately 28 days.' },
+  { q:'What happens on approximately day 14 of the menstrual cycle?', a:'Ovulation — an egg is released from an ovary. This is the most fertile point of the cycle.' },
+  { q:'What happens during menstruation (days 1–5)?', a:'The uterus lining breaks down and is shed along with blood through the vagina, because fertilisation did not occur in the previous cycle.' },
+  { q:'What does progesterone do in the menstrual cycle?', a:'After ovulation it maintains (keeps thick) the uterus lining ready for implantation. If no fertilisation occurs, progesterone levels fall sharply, causing menstruation.' },
+  { q:'What happens to the menstrual cycle if fertilisation occurs?', a:'Progesterone levels remain high to maintain the uterus lining. Menstruation does not occur and the cycle stops until after birth.' },
+  { q:'What is the role of oestrogen in the menstrual cycle?', a:'Oestrogen causes the uterus lining to rebuild after menstruation and triggers ovulation when it peaks around day 12–14.' },
+];
+
+const GAPS = [
+  { q:'Variation that falls into distinct groups with no intermediate values is called ___1___ variation.', slots:[['discontinuous']] },
+  { q:'Height is an example of ___1___ variation because it varies across a range with no distinct categories.', slots:[['continuous']] },
+  { q:'Blood group is determined by ___1___ and is an example of an inherited characteristic.', slots:[['genes','genetics','inheritance']] },
+  { q:'Sperm are produced in the ___1___.', slots:[['testes','testis']] },
+  { q:'Fertilisation — the fusion of sperm and egg — takes place in the ___1___.', slots:[['oviduct','fallopian tube','oviduct (fallopian tube)']] },
+  { q:'The fertilised egg is called a ___1___.', slots:[['zygote']] },
+  { q:'After cell division begins, the developing organism is called an ___1___ until about 8 weeks, then a ___2___ until birth.', slots:[['embryo'],['foetus','fetus']] },
+  { q:'The embryo embeds in the lining of the uterus in a process called ___1___.', slots:[['implantation']] },
+  { q:'The ___1___ connects the foetus to the uterus wall and is where exchange of oxygen and nutrients takes place between mother and foetus.', slots:[['placenta']] },
+  { q:'Maternal and foetal blood do NOT ___1___ in the placenta — exchange occurs by diffusion.', slots:[['mix']] },
+  { q:'The ___1___ cord connects the foetus to the placenta.', slots:[['umbilical']] },
+  { q:'The ___1___ sac and its fluid cushion the foetus from physical shocks and maintain a stable temperature.', slots:[['amniotic']] },
+  { q:'Carbon monoxide from smoking crosses the placenta and reduces the amount of ___1___ delivered to the foetus.', slots:[['oxygen']] },
+  { q:'Puberty in males is triggered by the hormone ___1___, produced by the testes.', slots:[['testosterone']] },
+  { q:'The menstrual cycle lasts approximately ___1___ days.', slots:[['28','twenty-eight']] },
+  { q:'Ovulation — the release of an egg — occurs on approximately day ___1___ of the menstrual cycle.', slots:[['14','fourteen']] },
+  { q:'During menstruation, the ___1___ lining is shed through the vagina.', slots:[['uterus','womb']] },
+  { q:'After ovulation, ___1___ is secreted to maintain the uterus lining ready for implantation.', slots:[['progesterone']] },
+  { q:'If fertilisation does NOT occur, progesterone levels ___1___, and menstruation begins.', slots:[['fall','drop','decrease']] },
+  { q:'If fertilisation DOES occur, ___1___ levels remain high and menstruation does not take place.', slots:[['progesterone']] },
+];
+
+const MCQS = [
+  {
+    q:'Which of these is an example of DISCONTINUOUS variation?',
+    opts:['Height','Body mass','Blood group','Skin colour'],
+    ans:2,
+    exp:'Blood group (A, B, AB or O) falls into distinct categories — there are no intermediate values. Height, mass and skin colour all vary continuously across a range.'
+  },
+  {
+    q:'Where does fertilisation take place in the female body?',
+    opts:['Ovary','Uterus','Oviduct (Fallopian tube)','Vagina'],
+    ans:2,
+    exp:'Fertilisation — the fusion of sperm and egg — takes place in the oviduct (Fallopian tube), shortly after the egg is released from the ovary.'
+  },
+  {
+    q:'What is a zygote?',
+    opts:['An unfertilised egg cell','A sperm cell','The cell formed immediately after fertilisation','The foetus at 20 weeks'],
+    ans:2,
+    exp:'A zygote is the single cell formed when a sperm fertilises an egg. It contains the full set of chromosomes (one set from each parent).'
+  },
+  {
+    q:'Which structure allows exchange of oxygen and nutrients between the mother and the foetus?',
+    opts:['Amniotic sac','Umbilical cord','Placenta','Cervix'],
+    ans:2,
+    exp:'The placenta is the site of exchange — oxygen and nutrients pass from maternal blood to foetal blood, and CO₂ and urea pass the other way. The umbilical cord connects the foetus to the placenta.'
+  },
+  {
+    q:'Do the mother\'s blood and the foetus\'s blood mix in the placenta?',
+    opts:['Yes, they mix completely','Yes, but only oxygen passes','No — they are kept separate; exchange occurs by diffusion','No — there is no exchange of substances at all'],
+    ans:2,
+    exp:'Maternal and foetal blood do NOT mix in the placenta. They flow in close proximity, and substances such as oxygen, glucose and CO₂ diffuse across the thin membranes between the two blood supplies.'
+  },
+  {
+    q:'On approximately which day of the menstrual cycle does ovulation occur?',
+    opts:['Day 1','Day 7','Day 14','Day 28'],
+    ans:2,
+    exp:'Ovulation — release of an egg from the ovary — occurs at approximately day 14 of the 28-day menstrual cycle, triggered by a surge in oestrogen.'
+  },
+  {
+    q:'What causes menstruation to begin at the end of the menstrual cycle?',
+    opts:['Oestrogen levels rise sharply','Progesterone levels fall sharply','The egg is fertilised','Ovulation occurs'],
+    ans:1,
+    exp:'If fertilisation does not occur, progesterone levels fall sharply around day 28. This withdrawal of progesterone causes the uterus lining to break down and shed — menstruation.'
+  },
+  {
+    q:'Why is smoking harmful to a developing foetus?',
+    opts:['It prevents ovulation','Carbon monoxide crosses the placenta, reducing oxygen reaching the foetus','Nicotine increases the foetus\'s heart rate to dangerous levels','Smoke destroys the amniotic fluid'],
+    ans:1,
+    exp:'Carbon monoxide from cigarette smoke crosses the placenta and binds to foetal haemoglobin, reducing the amount of oxygen carried to the foetus. This causes low birth weight and other complications.'
+  },
+  {
+    q:'Which hormone is primarily responsible for maintaining the uterus lining after ovulation?',
+    opts:['Testosterone','Oestrogen','Progesterone','Adrenaline'],
+    ans:2,
+    exp:'Progesterone is secreted after ovulation (by the corpus luteum) to maintain the thickened uterus lining ready for implantation. If no fertilisation occurs, progesterone falls and menstruation begins.'
+  },
+  {
+    q:'What is the function of the amniotic fluid?',
+    opts:['It provides nutrients directly to the foetus','It cushions the foetus from physical shocks and maintains a stable temperature','It carries oxygen from the placenta to the foetus','It prevents the mother\'s immune system from attacking the foetus'],
+    ans:1,
+    exp:'Amniotic fluid surrounds the foetus inside the amniotic sac. It acts as a shock absorber, maintains a stable temperature and allows the foetus to move freely.'
+  },
+  {
+    q:'Which of the following is a change that occurs in BOTH males and females during puberty?',
+    opts:['Voice deepens','Menstrual cycle begins','Growth spurt','Sperm production begins'],
+    ans:2,
+    exp:'A growth spurt occurs in both sexes during puberty. Voice breaking, sperm production and facial hair are male-specific; menstruation and breast development are female-specific.'
+  },
+  {
+    q:'What term describes the stage of development from approximately 8 weeks after fertilisation until birth?',
+    opts:['Zygote','Embryo','Foetus','Gamete'],
+    ans:2,
+    exp:'From approximately 8 weeks after fertilisation until birth the developing organism is called a foetus (when all major organs are present). Before 8 weeks it is called an embryo.'
+  },
+  {
+    q:'Height is influenced by both genes and environment. Which statement best explains this?',
+    opts:['Genes alone determine height, but illness can damage growth','Genes set the growth potential, but nutrition and other environmental factors determine how much of that potential is reached','Environment is far more important than genetics for determining height','Height is entirely random and neither genes nor environment matter'],
+    ans:1,
+    exp:'Height is a classic "both" characteristic. Your genes determine your growth potential (the range of heights you could reach), but factors like diet, disease and exercise influence where in that range you end up.'
+  },
+  {
+    q:'The umbilical cord connects the foetus to the:',
+    opts:['Uterus wall directly','Placenta','Amniotic sac','Cervix'],
+    ans:1,
+    exp:'The umbilical cord connects the foetus to the placenta. Blood vessels within it carry oxygenated blood and nutrients from the placenta to the foetus, and deoxygenated blood and waste products back.'
+  },
+  {
+    q:'Which statement about the placenta is CORRECT?',
+    opts:['The foetus\'s blood and the mother\'s blood flow through the same vessels','Antibiotics always cross the placenta and harm the foetus','Oxygen passes from the mother\'s blood to the foetus\'s blood by diffusion across a thin membrane','The placenta produces the zygote'],
+    ans:2,
+    exp:'Oxygen (and glucose, amino acids etc.) diffuses from the mother\'s blood across the thin placental membrane into the foetal blood, without the two blood supplies physically mixing.'
+  },
+];
+
+const EXAM_QS = [
+  {
+    n: '1.',
+    context: `<p>A group of pupils measured each other's heights and also recorded their blood groups.</p>`,
+    parts: [
+      {
+        label: 'a',
+        q: 'State whether height is an example of continuous or discontinuous variation, and give a reason for your answer.',
+        marks: 2,
+        ms: `Continuous <span class="mark">(1)</span>; because height varies across a range with no distinct groups / can take any value between extremes <span class="mark">(1)</span>.`
+      },
+      {
+        label: 'b',
+        q: 'State whether blood group is an example of continuous or discontinuous variation.',
+        marks: 1,
+        ms: `Discontinuous <span class="mark">(1)</span>.`
+      },
+      {
+        label: 'c',
+        q: 'Suggest the most appropriate type of graph to display the height data. Explain your choice.',
+        marks: 2,
+        ms: `Histogram (or line graph) <span class="mark">(1)</span>; because height is continuous data — it varies across a range with no distinct categories, so a histogram is appropriate <span class="mark">(1)</span>. <em>Bar chart alone is not accepted.</em>`
+      },
+      {
+        label: 'd',
+        q: 'Is height determined mainly by genes, environment, or both? Explain your answer.',
+        marks: 2,
+        ms: `Both <span class="mark">(1)</span>; genes determine the growth potential / range of possible heights, but environmental factors such as diet and health influence how much of that potential is achieved <span class="mark">(1)</span>.`
+      }
+    ]
+  },
+  {
+    n: '2.',
+    context: `<p>The diagram shows the female reproductive system.</p>
+      <p style="text-align:center; padding:12px; background:var(--leaf-pale); border-radius:8px; font-style:italic; color:var(--ink-soft);">[A labelled diagram of the female reproductive system with structures A–E marked]</p>`,
+    parts: [
+      {
+        label: 'a',
+        q: 'Name the structure where fertilisation takes place.',
+        marks: 1,
+        ms: `Oviduct / Fallopian tube <span class="mark">(1)</span>.`
+      },
+      {
+        label: 'b',
+        q: 'Describe the journey of the fertilised egg from fertilisation until implantation.',
+        marks: 3,
+        ms: `The fertilised egg (zygote) is formed in the oviduct <span class="mark">(1)</span>; it divides to form an embryo and travels along the oviduct to the uterus <span class="mark">(1)</span>; it implants in the lining of the uterus wall <span class="mark">(1)</span>.`
+      },
+      {
+        label: 'c',
+        q: 'State the function of the cervix.',
+        marks: 1,
+        ms: `The lower neck of the uterus; it dilates to allow the baby to pass through during birth <span class="mark">(1)</span>.`
+      },
+      {
+        label: 'd',
+        q: 'Explain the difference between a gamete and a zygote.',
+        marks: 2,
+        ms: `A gamete is a sex cell (sperm or egg) containing half the normal number of chromosomes <span class="mark">(1)</span>; a zygote is the single cell formed by the fusion of two gametes and contains the full number of chromosomes <span class="mark">(1)</span>.`
+      }
+    ]
+  },
+  {
+    n: '3.',
+    context: `<p>A foetus develops inside its mother's uterus for approximately 9 months.</p>`,
+    parts: [
+      {
+        label: 'a',
+        q: 'Name the structure that allows exchange of substances between the mother\'s blood and the foetus\'s blood.',
+        marks: 1,
+        ms: `Placenta <span class="mark">(1)</span>.`
+      },
+      {
+        label: 'b',
+        q: 'State TWO substances that pass from the mother to the foetus, and TWO substances that pass from the foetus to the mother.',
+        marks: 4,
+        ms: `Mother → foetus: any two from oxygen, glucose, amino acids, water, minerals, vitamins <span class="mark">(2)</span>; foetus → mother: carbon dioxide <span class="mark">(1)</span> and urea <span class="mark">(1)</span>.`
+      },
+      {
+        label: 'c',
+        q: 'Explain why the mother\'s blood and the foetus\'s blood do not mix, even though exchange of substances takes place.',
+        marks: 2,
+        ms: `The two blood supplies are kept in separate vessels / flow on opposite sides of a thin membrane <span class="mark">(1)</span>; substances such as oxygen and glucose diffuse across this membrane down a concentration gradient <span class="mark">(1)</span>.`
+      },
+      {
+        label: 'd',
+        q: 'Explain how smoking during pregnancy can harm the developing foetus.',
+        marks: 3,
+        ms: `Carbon monoxide (from smoke) crosses the placenta <span class="mark">(1)</span>; it binds to haemoglobin in the foetal blood, reducing the amount of oxygen carried <span class="mark">(1)</span>; this leads to low birth weight / premature birth / increased risk of miscarriage <span class="mark">(1)</span>. <em>Also accept: nicotine restricts blood vessels, reducing blood flow to the foetus.</em>`
+      }
+    ]
+  },
+  {
+    n: '4.',
+    context: `<p>The graph below shows changes in hormone levels and uterus lining thickness over one 28-day menstrual cycle.</p>
+      <p style="text-align:center; padding:12px; background:var(--leaf-pale); border-radius:8px; font-style:italic; color:var(--ink-soft);">[A graph showing oestrogen and progesterone levels and uterus lining thickness over 28 days]</p>`,
+    parts: [
+      {
+        label: 'a',
+        q: 'What event occurs at approximately day 14 of the menstrual cycle?',
+        marks: 1,
+        ms: `Ovulation — an egg is released from an ovary <span class="mark">(1)</span>.`
+      },
+      {
+        label: 'b',
+        q: 'Explain what happens to the uterus lining during days 1–5.',
+        marks: 2,
+        ms: `The uterus lining breaks down <span class="mark">(1)</span>; it is shed along with blood through the vagina (menstruation) because fertilisation did not occur in the previous cycle <span class="mark">(1)</span>.`
+      },
+      {
+        label: 'c',
+        q: 'Which hormone maintains the uterus lining after ovulation? What happens to its level if fertilisation does not occur?',
+        marks: 2,
+        ms: `Progesterone <span class="mark">(1)</span>; its level falls sharply towards day 28, which causes the uterus lining to break down and menstruation to begin <span class="mark">(1)</span>.`
+      },
+      {
+        label: 'd',
+        q: 'Describe what would happen to the menstrual cycle if fertilisation did occur.',
+        marks: 2,
+        ms: `Progesterone levels would remain high <span class="mark">(1)</span>; the uterus lining would be maintained and menstruation would not occur / the cycle would stop <span class="mark">(1)</span>.`
+      },
+      {
+        label: 'e',
+        q: 'State TWO physical changes that occur in males during puberty.',
+        marks: 2,
+        ms: `Any two from: testes and penis enlarge / sperm production begins / voice breaks (deepens) / facial and body hair grows / muscles develop (shoulders broaden) <span class="mark">(2)</span>.`
+      }
+    ]
+  }
+];
+
+// ══════════════════════ TAB SWITCHING ══════════════════════
+document.querySelectorAll('.tab').forEach(t => {
+  t.onclick = () => {
+    document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById('panel-' + t.dataset.panel).classList.add('active');
+  };
+});
+
+// ══════════════════════ KEYWORDS ══════════════════════
+function renderKeywords() {
+  const grid = document.getElementById('keywordGrid');
+  grid.innerHTML = '';
+  KEYWORDS.forEach(k => {
+    const card = document.createElement('div');
+    card.className = 'kw-card';
+    card.innerHTML = `<div class="kw-term">${k.term}</div><div class="kw-def">${k.def}</div><div class="kw-topic">${k.topic}</div>`;
+    grid.appendChild(card);
+  });
+}
+renderKeywords();
+
+// ══════════════════════ FLASHCARDS ══════════════════════
+let flashIdx = 0;
+let flashFlipped = false;
+
+function renderFlash() {
+  const card = FLASH[flashIdx];
+  document.getElementById('flashCounter').textContent = `${flashIdx + 1} / ${FLASH.length}`;
+  if (flashFlipped) {
+    document.getElementById('flashSideLabel').textContent = 'Answer';
+    document.getElementById('flashContent').className = 'flash-a';
+    document.getElementById('flashContent').textContent = card.a;
+  } else {
+    document.getElementById('flashSideLabel').textContent = 'Question';
+    document.getElementById('flashContent').className = 'flash-q';
+    document.getElementById('flashContent').textContent = card.q;
+  }
+}
+function flipFlash() { flashFlipped = !flashFlipped; renderFlash(); }
+function nextFlash() { flashIdx = (flashIdx + 1) % FLASH.length; flashFlipped = false; renderFlash(); }
+function prevFlash() { flashIdx = (flashIdx - 1 + FLASH.length) % FLASH.length; flashFlipped = false; renderFlash(); }
+renderFlash();
+
+// ══════════════════════ GAP FILL ══════════════════════
+function renderGaps() {
+  const list = document.getElementById('gapList');
+  list.innerHTML = '';
+  GAPS.forEach((g, idx) => {
+    let html = g.q;
+    g.slots.forEach((_, i) => {
+      html = html.replace(`___${i+1}___`, `<input class="gap-input" id="gap-${idx}-${i}" type="text" autocomplete="off">`);
+    });
+    const card = document.createElement('div');
+    card.className = 'gap-card';
+    card.innerHTML = `<div class="gap-q"><strong style="color:var(--moss);">${idx+1}.</strong> ${html}</div><div class="gap-feedback" id="gap-fb-${idx}"></div>`;
+    list.appendChild(card);
+  });
+  document.querySelectorAll('.gap-input').forEach(inp => {
+    inp.addEventListener('keydown', e => { if (e.key === 'Enter') checkAllGaps(); });
+  });
+}
+function checkAllGaps() {
+  GAPS.forEach((g, idx) => {
+    let allRight = true, attempted = false;
+    g.slots.forEach((acceptedList, i) => {
+      const input = document.getElementById(`gap-${idx}-${i}`);
+      if (!input) return;
+      const val = input.value.trim().toLowerCase();
+      if (val) attempted = true;
+      const isRight = acceptedList.map(a => a.toLowerCase()).includes(val);
+      input.classList.remove('right', 'wrong');
+      if (isRight) { input.classList.add('right'); }
+      else { if (val) input.classList.add('wrong'); allRight = false; }
+    });
+    const fb = document.getElementById(`gap-fb-${idx}`);
+    if (!fb) return;
+    if (allRight && attempted) { fb.textContent = '✓ Correct!'; fb.style.color = 'var(--teal)'; }
+    else if (attempted) { fb.textContent = `Correct answer: ${g.slots.map(s => s[0]).join(', ')}`; fb.style.color = 'var(--rust)'; }
+    else { fb.textContent = ''; }
+  });
+}
+function resetGaps() {
+  document.querySelectorAll('.gap-input').forEach(i => { i.value = ''; i.classList.remove('right','wrong'); });
+  document.querySelectorAll('.gap-feedback').forEach(f => f.textContent = '');
+}
+renderGaps();
+
+// ══════════════════════ MCQ ══════════════════════
+let mcqAnswered = new Set();
+let mcqCorrect = 0;
+
+function shuffleArr(a) {
+  const arr = [...a];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function renderMcqs() {
+  const list = document.getElementById('mcqList');
+  list.innerHTML = '';
+  document.getElementById('mcqTotal').textContent = MCQS.length;
+  MCQS.forEach((m, idx) => {
+    const shuffled = shuffleArr(m.opts.map((o, i) => ({text: o, orig: i})));
+    const letters = ['A','B','C','D'];
+    let optsHtml = '';
+    shuffled.forEach((s, i) => {
+      optsHtml += `<button class="mcq-opt" data-q="${idx}" data-orig="${s.orig}"><span class="mcq-opt-letter">${letters[i]}</span><span>${s.text}</span></button>`;
+    });
+    const card = document.createElement('div');
+    card.className = 'mcq-card';
+    card.innerHTML = `<div class="mcq-q"><span class="mcq-num">Q${idx+1}.</span>${m.q}</div><div class="mcq-options">${optsHtml}</div><div class="mcq-feedback" id="mcq-fb-${idx}"></div>`;
+    list.appendChild(card);
+  });
+  document.querySelectorAll('.mcq-opt').forEach(btn => { btn.onclick = () => answerMcq(btn); });
+}
+function answerMcq(btn) {
+  const qIdx = parseInt(btn.dataset.q);
+  if (mcqAnswered.has(qIdx)) return;
+  mcqAnswered.add(qIdx);
+  const orig = parseInt(btn.dataset.orig);
+  const m = MCQS[qIdx];
+  document.querySelectorAll(`.mcq-opt[data-q="${qIdx}"]`).forEach(b => {
+    b.disabled = true;
+    if (parseInt(b.dataset.orig) === m.ans) b.classList.add('correct');
+  });
+  const fb = document.getElementById(`mcq-fb-${qIdx}`);
+  fb.classList.add('show');
+  if (orig === m.ans) { mcqCorrect++; fb.classList.add('correct'); fb.innerHTML = `<strong>✓ Correct.</strong> ${m.exp}`; }
+  else { btn.classList.add('wrong'); fb.classList.add('wrong'); fb.innerHTML = `<strong>✗ Not quite.</strong> ${m.exp}`; }
+  document.getElementById('mcqScore').textContent = mcqCorrect;
+  document.getElementById('mcqProgress').style.width = (mcqAnswered.size / MCQS.length * 100) + '%';
+}
+renderMcqs();
+
+// ══════════════════════ EXAM Qs ══════════════════════
+let examGot = 0;
+let examMax = 0;
+const markState = {};
+
+function updateBanner() {
+  document.getElementById('bannerGot').textContent = examGot;
+  document.getElementById('bannerMax').textContent = examMax;
+  const pct = examMax === 0 ? 0 : Math.round((examGot / examMax) * 100);
+  document.getElementById('bannerFill').style.width = pct + '%';
+  const msgs = [
+    [90,'Excellent — scholarship standard! 🏆'],
+    [70,'Strong performance — well above the CE pass mark.'],
+    [50,'Good effort — review any points you missed.'],
+    [1, 'Keep going — tick each mark point you earned.'],
+    [0, 'Tick the mark points you achieved after reading each mark scheme.']
+  ];
+  document.getElementById('bannerMsg').textContent = msgs.find(([t]) => pct >= t)[1];
+}
+
+function parseMsPoints(msHtml) {
+  const points = [];
+  const tmp = document.createElement('div');
+  tmp.innerHTML = msHtml;
+  let current = '';
+  let currentPts = 0;
+  function flush() {
+    if (currentPts > 0) {
+      let text = current.trim().replace(/^[;\s]+/, '').trim();
+      if (text.length > 0) text = text.charAt(0).toUpperCase() + text.slice(1);
+      points.push({ html: text, pts: currentPts });
+      current = ''; currentPts = 0;
+    }
+  }
+  tmp.childNodes.forEach(node => {
+    if (node.nodeType === 3) { current += node.textContent; }
+    else if (node.nodeType === 1) {
+      if (node.classList && node.classList.contains('mark')) {
+        const m = node.textContent.match(/\d+/);
+        current += node.outerHTML;
+        currentPts = m ? parseInt(m[0]) : 1;
+        flush();
+      } else { current += node.outerHTML; }
+    }
+  });
+  if (current.trim() && points.length > 0) points[points.length - 1].html += ' ' + current.trim();
+  if (!points.length) points.push({ html: msHtml, pts: 1 });
+  return points;
+}
+
+function renderExam() {
+  const list = document.getElementById('examList');
+  list.innerHTML = '';
+  EXAM_QS.forEach((e, qIdx) => {
+    markState[qIdx] = {};
+    const totalMarks = e.parts.reduce((s, p) => s + p.marks, 0);
+    examMax += totalMarks;
+    const card = document.createElement('div');
+    card.className = 'exam-card';
+    let html = `
+      <div class="exam-header">
+        <span class="exam-num">Question ${e.n}</span>
+        <span class="exam-marks">${totalMarks} mark${totalMarks === 1 ? '' : 's'}</span>
+      </div>`;
+    if (e.context) html += `<div class="exam-context">${e.context}</div>`;
+    e.parts.forEach((part, pIdx) => {
+      markState[qIdx][pIdx] = {};
+      const points = parseMsPoints(part.ms);
+      let tickRows = '';
+      points.forEach((pt, ptIdx) => {
+        markState[qIdx][pIdx][ptIdx] = false;
+        tickRows += `
+          <div class="mark-row">
+            <div class="mark-check" id="mc-${qIdx}-${pIdx}-${ptIdx}" onclick="toggleMark(${qIdx},${pIdx},${ptIdx},${pt.pts})" title="Click to award">✓</div>
+            <div class="mark-label">${pt.html}</div>
+            <div class="mark-pts">+${pt.pts}</div>
+          </div>`;
+      });
+      html += `
+        <div class="part-block">
+          <div class="part-stem">
+            <span class="part-label">${part.label})</span>
+            <span class="part-q">${part.q} <em class="part-marks">(${part.marks} mark${part.marks===1?'':'s'})</em></span>
+          </div>
+          <div class="answer-area">
+            <div class="answer-label">Your answer</div>
+            <textarea class="answer-textarea" id="ans-${qIdx}-${pIdx}" placeholder="Write your answer here…" rows="3"></textarea>
+          </div>
+          <div class="part-controls">
+            <button class="reveal-btn" id="reveal-${qIdx}-${pIdx}" onclick="togglePartMs(${qIdx},${pIdx})">Show mark scheme</button>
+          </div>
+          <div class="part-ms" id="ms-${qIdx}-${pIdx}">
+            <div class="ms-content">${part.ms}</div>
+            <div class="self-mark show">
+              <div class="self-mark-title">✏️ Tick each point you got right</div>
+              <div class="mark-rows">${tickRows}</div>
+              <div class="score-tally">
+                <span class="tally-label">Part ${part.label}:</span>
+                <span class="tally-score" id="tally-${qIdx}-${pIdx}">0 / ${part.marks}</span>
+                <div class="tally-bar"><div class="tally-fill" id="tally-fill-${qIdx}-${pIdx}"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>`;
+    });
+    html += `
+      <div class="question-total">
+        <span class="qtotal-label">Question ${e.n} total:</span>
+        <span class="qtotal-score" id="qscore-${qIdx}">0 / ${totalMarks}</span>
+        <div class="tally-bar" style="flex:1;"><div class="tally-fill" id="qfill-${qIdx}"></div></div>
+      </div>`;
+    card.innerHTML = html;
+    list.appendChild(card);
+  });
+  updateBanner();
+}
+
+function togglePartMs(qIdx, pIdx) {
+  const ms = document.getElementById(`ms-${qIdx}-${pIdx}`);
+  const btn = document.getElementById(`reveal-${qIdx}-${pIdx}`);
+  if (ms.classList.contains('show')) { ms.classList.remove('show'); btn.textContent = 'Show mark scheme'; }
+  else { ms.classList.add('show'); btn.textContent = 'Hide mark scheme'; setTimeout(() => ms.scrollIntoView({ behavior:'smooth', block:'nearest' }), 40); }
+}
+
+function toggleMark(qIdx, pIdx, ptIdx, pts) {
+  const box = document.getElementById(`mc-${qIdx}-${pIdx}-${ptIdx}`);
+  const wasChecked = markState[qIdx][pIdx][ptIdx];
+  markState[qIdx][pIdx][ptIdx] = !wasChecked;
+  if (wasChecked) { box.classList.remove('checked'); examGot = Math.max(0, examGot - pts); }
+  else { box.classList.add('checked'); examGot += pts; }
+  const part = EXAM_QS[qIdx].parts[pIdx];
+  const points = parseMsPoints(part.ms);
+  let partGot = 0;
+  points.forEach((pt, i) => { if (markState[qIdx][pIdx][i]) partGot += pt.pts; });
+  document.getElementById(`tally-${qIdx}-${pIdx}`).textContent = `${partGot} / ${part.marks}`;
+  document.getElementById(`tally-fill-${qIdx}-${pIdx}`).style.width = (part.marks === 0 ? 0 : Math.round(partGot / part.marks * 100)) + '%';
+  const e = EXAM_QS[qIdx];
+  const qMax = e.parts.reduce((s, p) => s + p.marks, 0);
+  let qGot = 0;
+  e.parts.forEach((p, pi) => { parseMsPoints(p.ms).forEach((pt, ptI) => { if (markState[qIdx][pi][ptI]) qGot += pt.pts; }); });
+  document.getElementById(`qscore-${qIdx}`).textContent = `${qGot} / ${qMax}`;
+  document.getElementById(`qfill-${qIdx}`).style.width = (qMax === 0 ? 0 : Math.round(qGot / qMax * 100)) + '%';
+  updateBanner();
+}
+
+renderExam();
+</script>
+</body>
+</html>
